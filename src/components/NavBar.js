@@ -1,26 +1,20 @@
 // NavBar.js
 import React from "react";
 import { Link } from "react-router-dom";
+import { logout } from "../auth"; // Import the logout function
 
 function NavBar() {
+  const handleLogout = () => {
+    logout(); // Call the logout function on button click
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
         Finance Tracker
       </Link>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">
+      <div className="collapse navbar-collapse">
+        <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/income">
               Income
@@ -37,6 +31,9 @@ function NavBar() {
             </Link>
           </li>
         </ul>
+        <button className="btn btn-outline-light" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
     </nav>
   );

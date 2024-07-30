@@ -25,10 +25,16 @@ function checkTokenAndRedirect() {
   }
 }
 
+function logout() {
+  removeToken();
+  window.location.href = "/login"; // Redirect to login page
+}
+
 export {
   isTokenExpired,
   getToken,
   setToken,
   removeToken,
   checkTokenAndRedirect,
+  logout,
 };
