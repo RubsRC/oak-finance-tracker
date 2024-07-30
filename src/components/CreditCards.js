@@ -1,6 +1,7 @@
-// src/components/CreditCards.js
+// CreditCards.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 function CreditCards() {
   const [cards, setCards] = useState([]);
@@ -10,16 +11,31 @@ function CreditCards() {
   }, []);
 
   return (
-    <div>
-      <h2>Credit Cards</h2>
-      <ul>
-        {cards.map((card) => (
-          <li key={card._id}>
-            {card.name}: ${card.balance} (Due: {card.dueDate})
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <h2 className="my-4">Credit Cards</h2>
+          <Row>
+            {cards.map((card) => (
+              <Col md={4} key={card._id}>
+                <Card className="mb-3">
+                  <Card.Body>
+                    <Card.Title>{card.name}</Card.Title>
+                    <Card.Text>
+                      Balance: ${card.balance}
+                      <br />
+                      Due Date: {new Date(card.dueDate).toLocaleDateString()}
+                      <br />
+                      Interest Rate: {card.interestRate}%
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
